@@ -14,4 +14,4 @@ class Settings(BaseSettings):
     class Config:
         env_file=".env"
 
-setting=Settings() 
+settings=Settings() 
