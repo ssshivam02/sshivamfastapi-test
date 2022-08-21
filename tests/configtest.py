@@ -4,7 +4,6 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from app.main import app
-
 from app.config import settings
 from app.database import get_db
 from app.database import Base
@@ -38,7 +37,6 @@ def session():
 @pytest.fixture()
 def client(session):
     def override_get_db():
-
         try:
             yield session
         finally:
@@ -48,26 +46,22 @@ def client(session):
 
 
 @pytest.fixture
-def test_user2(client):
-    user_data = {"email": "sanjeev123@gmail.com",
-                 "password": "password123"}
-    res = client.post("/users/", json=user_data)
-
+def test_user(client):
+    user_data = {"email": "shivamsharma02@gmail.com",
+                 "password": "king02"}
+    res = client.post("/users/create", json=user_data)
     assert res.status_code == 201
-
     new_user = res.json()
     new_user['password'] = user_data['password']
     return new_user
 
 
 @pytest.fixture
-def test_user(client):
-    user_data = {"email": "shivamsharma02@gmail.com",
+def test_user2(client):
+    user_data = {"email": "shivamsharma03@gmail.com",
                  "password": "king02"}
     res = client.post("/users/create", json=user_data)
-    print(res.status_code)
     assert res.status_code == 201
-
     new_user = res.json()
     new_user['password'] = user_data['password']
     return new_user
@@ -84,7 +78,6 @@ def authorized_client(client, token):
         **client.headers,
         "Authorization": f"Bearer {token}"
     }
-
     return client
 
 
@@ -111,7 +104,6 @@ def test_posts(test_user, session, test_user2):
 
     def create_post_model(post):
         return models.Post(**post)
-
     post_map = map(create_post_model, posts_data)
     posts = list(post_map)
 

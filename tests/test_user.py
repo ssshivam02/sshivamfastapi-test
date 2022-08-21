@@ -4,11 +4,11 @@ from .configtest import client,session,test_user
 from  app.config import settings
 import pytest
 # misc
-def test_root(client):
-    res = client.get("/")
-    print(res.json().get('message'))
-    assert res.json().get('message') == 'Hello World'
-    assert res.status_code == 200
+# def test_root(client):
+#     res = client.get("/")
+#     print(res.json().get('message'))
+#     assert res.json().get('message') == 'Hello World'
+#     assert res.status_code == 200
 
 def test_create_user(client):
     res = client.post(

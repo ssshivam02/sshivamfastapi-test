@@ -46,7 +46,7 @@ def read_posts(page_num: int = 1, page_size: int = 10, db: Session = Depends(get
 
     return response
 
-@router.get("/pagination")
+@router.get("/pagination", status_code=status.HTTP_200_OK)
 def get_page(page_num:Optional[int]=1,page_size:Optional[int]=5,db: Session = Depends(get_db)):
     post=db.query(models.Post).all()
     start=(page_num-1)*page_size
@@ -57,7 +57,7 @@ def get_page(page_num:Optional[int]=1,page_size:Optional[int]=5,db: Session = De
 #@router.get("/",response_model=List[schemas.Post])        #int is not imp we can add anything here #limit 10 is default
 @router.get("/", response_model=List[schemas.PostOut])        #int is not imp we can add anything here #limit 10 is default
 def get_posts(db: Session = Depends(get_db),current_user:int= Depends(oauth2.get_current_user),
-limit:int=10,skip:int=0,search:Optional[str]= ""):
+limit:Optional[int]=10,skip:Optional[int]=0,search:Optional[str]= ""):
     #{{URL}}posts?limit=5&skip=0&search=this%my
     #this will make private as per owner_id
     #post=db.query(models.Post).filter(models.Post.owner_id==current_user.id).all()
@@ -87,7 +87,7 @@ def get_posts():
 '''
 
 #by using orm #use of response_model is imp
-@router.post("/create",response_model=schemas.Post)
+@router.post("/create",response_model=schemas.Post, status_code=status.HTTP_201_CREATED)
 async def post_create(post:schemas.PostCreate,req:Request,db: Session = Depends(get_db),current_user:int= Depends(oauth2.get_current_user)):
     #print(post.dict())
     ans=await req.json()
