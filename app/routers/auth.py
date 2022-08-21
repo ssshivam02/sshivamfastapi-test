@@ -6,7 +6,7 @@ from .. import schemas,models,utils,oauth2
 router=APIRouter(tags=['Authorization'])
 
 #OAuth2PasswordRequestForm stores useremail into field called username 
-@router.post('/login',response_model=schemas.Token)
+@router.post('/login',status_code=status.HTTP_202_ACCEPTED,response_model=schemas.Token)
 def login(user_credentials:OAuth2PasswordRequestForm=Depends(),db:Session=Depends(get_db)):
     user=db.query(models.User).filter(models.User.email==user_credentials.username).first()
     if not user:

@@ -1,4 +1,5 @@
-from fastapi import APIRouter,status,Depends
+from urllib.request import Request
+from fastapi import APIRouter,status,Depends,Request
 from sqlalchemy.orm import Session
 from ..database import get_db
 from .. import models
@@ -6,10 +7,9 @@ from tests.test_simple import test_add
 
 router=APIRouter(tags=['Miscellaneous'])
 
-@router.get("/",status_code=status.HTTP_202_ACCEPTED)
-def root():
-    test_add(3,4,7)
-    return {"message":"Hello World!"}
+@router.get("/",status_code=status.HTTP_200_OK)
+async def root():
+    return {"message":"Hello World"}
 
 #------------------------------------------------------------------------------------------------#    
 @router.get("/sqlalchemy")

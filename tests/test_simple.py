@@ -2,13 +2,13 @@ import pytest
 from app.simple import add, subtract, multiply, divide, BankAccount, InsufficientFunds
 
 
-@pytest.fixture
+@pytest.fixture()
 def zero_bank_account():
     print("creating empty bank account")
     return BankAccount()
 
 
-@pytest.fixture
+@pytest.fixture()
 def bank_account():
     return BankAccount(50)
 

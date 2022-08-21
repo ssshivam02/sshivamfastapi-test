@@ -2,7 +2,7 @@ import uuid
 from fastapi import Depends, HTTPException,status
 from jose import JWTError,jwt
 from datetime import datetime,timedelta
-from .config import setting
+from .config import settings
 from sqlalchemy.orm import Session
 
 from app import models
@@ -17,9 +17,9 @@ def generate_uuid():
 #ALGORITHM
 #EXPRESSION_TIME=
 
-SECRET_KEY= setting.secret_key #generate_uuid()
-ALGORITHM=setting.algorithm #"HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES=setting.access_token_expire_minutes#60
+SECRET_KEY= settings.secret_key #generate_uuid()
+ALGORITHM=settings.algorithm #"HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES=settings.access_token_expire_minutes#60
 
 def create_access_token(data:dict):
     to_encode=data.copy()

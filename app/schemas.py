@@ -1,4 +1,4 @@
-from pydantic import BaseModel,EmailStr, conint
+from pydantic import BaseModel,EmailStr, conint, constr
 from datetime import datetime
 from typing import Optional
 '''
@@ -37,11 +37,14 @@ class PageFastApi(BaseModel):
 class UserCreate(BaseModel):
     email:EmailStr
     password:str #we change it to hash for password
+    phone_number:Optional[constr(min_length=10,max_length=10)]
+
     
 class UserOut(BaseModel):
     id:int
     email:EmailStr
     created_at:datetime
+    phone_number:Optional[constr(min_length=10,max_length=10)]
 
     class Config:
         orm_mode=True
