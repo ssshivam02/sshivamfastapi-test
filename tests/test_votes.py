@@ -1,8 +1,6 @@
 import pytest
 from app import models
-from jose import jwt
-from app import schemas
-from .configtest import client,session,test_user,authorized_client,create_access_token,test_posts,test_user2,token
+from .configtest import client,session,test_user,authorized_client,test_posts,test_user2,token
 from  app.config import settings
 import pytest
 

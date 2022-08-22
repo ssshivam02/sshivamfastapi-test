@@ -1,9 +1,7 @@
-import pytest
 from app import schemas
-from jose import jwt
 from app import schemas
-from .configtest import client,session,test_user,authorized_client,create_access_token,test_posts,test_user2,token
-from  app.config import settings
+from .configtest import test_user,authorized_client,test_posts,test_user2,token
+from .database import client, session
 import pytest
 
 def test_get_all_posts(authorized_client, test_posts):
