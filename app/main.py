@@ -11,7 +11,7 @@ origins=["https://www.google.com"] #this contain list of domain
 app = FastAPI()
 app.add_middleware(CORSMiddleware,
 
-allow_origins=origins,  #for public use ["*"]s
+allow_origins=origins,  #for public use ["*"]
 allow_credentials=True,
 allow_methods=["*"],
 allow_headers=["*"]
