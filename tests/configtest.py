@@ -9,7 +9,8 @@ def test_user(client):
     res = client.post("/users/create", json=user_data)
     assert res.status_code == 201
     new_user = res.json()
-    new_user['password'] = user_data['password']
+    new_user['password'] = user_data['password'] # here we adding password beacuse in response we not get passprd field.
+    # new_user={'id': 1, 'email': 'shivamsharma02@gmail.com', 'created_at': '2022-08-22T22:30:32.771646+05:30', 'phone_number': None, 'password': 'king02'}
     return new_user
 
 

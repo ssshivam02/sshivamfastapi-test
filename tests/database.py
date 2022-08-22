@@ -47,7 +47,7 @@ def client(session):
     app.dependency_overrides[get_db] = override_get_db
     yield TestClient(app)
 
-#fixture have scope
-#default function
-#we change it to module  fixture runs once in one module
-
+# fixture have scope
+# default function
+# we change it to module  fixture runs once in one module
+# fixture scope default function, class, module, package, session
