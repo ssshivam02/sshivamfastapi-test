@@ -9,7 +9,7 @@ router=APIRouter(tags=['Miscellaneous'])
 
 @router.get("/",status_code=status.HTTP_200_OK)
 async def root():
-    return {"message":"Hello World! successfully deployed on heroku using github-action!"}
+    return {"message":"Hello World! successfully deployed on heroku using github-action!!"}
 
 #------------------------------------------------------------------------------------------------#    
 @router.get("/sqlalchemy")
