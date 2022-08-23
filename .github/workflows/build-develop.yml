@@ -10,7 +10,7 @@ on: [push, pull_request] #this is for run ci/cd on push and pull action
 jobs:
   build:
     environment:
-      name: testing
+      name: testing   
     env:
       DATABASE_HOSTNAME: ${{secrets.DATABASE_HOSTNAME}}
       DATABASE_PORT: ${{secrets.DATABASE_PORT}}
@@ -47,7 +47,7 @@ jobs:
       - name: install all dependencies
         run: pip install -r requirements.txt
       - name: test with pytest
-        run: |
+        run: |                               #this help us to list of command for run
           pip install pytest
           pytest
       # - name: Login to Docker Hub
