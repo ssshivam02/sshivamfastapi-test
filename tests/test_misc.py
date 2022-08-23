@@ -4,7 +4,7 @@ def test_root(client):
     res = client.get("/")
     print(res.json().get('message'))
     assert res.json().get('message') == "Hello World! successfully deployed on heroku using github-action"
-    assert res.status_code == 20
+    assert res.status_code == 200
 
 
 def test_get_all_posts(client):
