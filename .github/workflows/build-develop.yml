@@ -67,11 +67,13 @@ jobs:
           heroku_email: ${{secrets.HEROKU_EMAIL}}
 
       - name: deploy to ubuntu server
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@master  #this is from github market system
         with:
           host: ${{secrets.PROD_HOST}}
           username: ${{secrets.PROD_USERNAME}}
-          password: ${{secrets.PROD_PASSWORD}}          #secrets we added in github setting in environment
+          password: ${{secrets.PROD_PASSWORD}}   
+          key: ${{ secrets.KEY }}
+       #secrets we added in github setting in environment
           script: |
             cd app/src
             git pull
