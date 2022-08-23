@@ -73,7 +73,7 @@ jobs:
           username: ${{secrets.PROD_USERNAME}}
           #password: ${{secrets.PROD_PASSWORD}} 
           key: ${{secrets.KEY}}
-          port: ${{secrets.APP_PORT}}          #secrets we added in github setting in environment
+          port: ${{secrets.APP_PORT}}         #secrets we added in github setting in environment
           script: |
               cd app/src
               git pull
