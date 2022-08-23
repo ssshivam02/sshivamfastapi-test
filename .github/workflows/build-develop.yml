@@ -71,7 +71,7 @@ jobs:
         with:
           host: ${{secrets.PROD_HOST}}
           username: ${{secrets.PROD_USERNAME}}
-          password: ${{secrets.PROD_PASSWORD}}   
+          #password: ${{secrets.PROD_PASSWORD}}   
           key: ${{ secrets.KEY }}
        #secrets we added in github setting in environment
           script: |
