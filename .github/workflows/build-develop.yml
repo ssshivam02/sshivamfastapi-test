@@ -72,11 +72,10 @@ jobs:
           host: ${{secrets.PROD_HOST}}
           username: ${{secrets.PROD_USERNAME}}
           #password: ${{secrets.PROD_PASSWORD}} 
-          port: ${{secrets.APP_PORT}}  
           key: ${{secrets.KEY}}
-       #secrets we added in github setting in environment
+          port: ${{secrets.APP_PORT}}  
+          #secrets we added in github setting in environment
           script: |
-              whoami
               cd app/src
               git pull
             #echo ${{secrets.PROD_PASSWORD}} | sudo -S systemctl restart api
