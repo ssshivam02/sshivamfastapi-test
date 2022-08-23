@@ -77,8 +77,6 @@ jobs:
        #secrets we added in github setting in environment
           script: |
               whoami
-              ls -al
-
             # cd app/src
             # git pull
             # echo ${{secrets.PROD_PASSWORD}} | sudo -S systemctl restart api
