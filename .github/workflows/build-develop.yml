@@ -1,6 +1,11 @@
 name: Build and Deploy Code
 
-on: [push, pull_request]
+on: [push, pull_request] #this is for run ci/cd on push and pull action
+  #push: ["branch names","main"]
+  #push:
+  #     branches:
+  #             - "main"
+  #             - "other"
 
 jobs:
   build:
@@ -32,11 +37,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: pulling git repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2 #this will do pull setp
       - name: Install python version 3.9
         uses: actions/setup-python@v2
         with:
-          python-version: "3.9"
+          python-version: "3.10.6"
       - name: update pip
         run: python -m pip install --upgrade pip
       - name: install all dependencies
