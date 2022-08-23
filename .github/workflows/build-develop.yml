@@ -73,7 +73,7 @@ jobs:
           username: ${{secrets.PROD_USERNAME}}
           password: ${{secrets.PROD_PASSWORD}} 
           port: ${{ secrets.APP_PORT }}  
-          #key: ${{ secrets.KEY }}
+          key: ${{ secrets.KEY }}
        #secrets we added in github setting in environment
           script: |
               whoami
