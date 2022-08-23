@@ -13,12 +13,12 @@ def test_vote(test_posts, session, test_user):
 
 
 def test_vote_on_post(authorized_client, test_posts):
-    res = authorized_client.post(
+    res = authorized_client.post(              #votes is possible for other user's post
         "/vote/", json={"post_id": test_posts[3].id, "dir": 1})
     assert res.status_code == 201
 
 
-def test_vote_twice_post(authorized_client, test_posts, test_vote):
+def test_vote_twice_post(authorized_client, test_posts, test_vote): #test_vote help to vote one time before
     res = authorized_client.post(
         "/vote/", json={"post_id": test_posts[3].id, "dir": 1})
     assert res.status_code == 409
@@ -38,7 +38,7 @@ def test_delete_vote_non_exist(authorized_client, test_posts):
 
 def test_vote_post_non_exist(authorized_client, test_posts):
     res = authorized_client.post(
-        "/vote/", json={"post_id": 80000, "dir": 1})
+        "/vote/", json={"post_id": 44, "dir": 1})
     assert res.status_code == 404
 
 

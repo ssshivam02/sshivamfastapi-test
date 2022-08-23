@@ -5,7 +5,7 @@ from app.database import engine
 from app.routers import post, user, auth, misc, vote
 from fastapi_pagination import add_pagination
 #this like help in createtable when we save first our code but after use of alembic in code we dont need this
-models.Base.metadata.create_all(bind=engine)
+#models.Base.metadata.create_all(bind=engine) 
 origins=["https://www.google.com"] #this contain list of domain
 
 app = FastAPI()

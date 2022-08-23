@@ -1,5 +1,4 @@
 from app import schemas
-from app import schemas
 from .configtest import test_user,authorized_client,test_posts,test_user2,token
 from .database import client, session
 import pytest
@@ -8,8 +7,11 @@ def test_get_all_posts(authorized_client, test_posts):
     res = authorized_client.get("/posts/")
     def validate(post):
         return schemas.PostOut(**post)
-    posts_map = map(validate, res.json())
+    posts_map = map(validate, res.json()) #one by one iteration
     posts_list = list(posts_map)
+    #print(posts_list[0].Post)
+    #print(type(res.json())) #----> list
+    #print(len(res.json()),len(test_posts)) # 4,4
     assert len(res.json()) == len(test_posts)
     assert res.status_code == 200
 
@@ -25,7 +27,7 @@ def test_unauthorized_user_get_one_post(client, test_posts):
 
 
 def test_get_one_post_not_exist(authorized_client, test_posts):
-    res = authorized_client.get(f"/posts/88888")
+    res = authorized_client.get(f"/posts/728")
     assert res.status_code == 404
 
 
@@ -35,14 +37,15 @@ def test_get_one_post(authorized_client, test_posts):
     assert post.Post.id == test_posts[0].id
     assert post.Post.content == test_posts[0].content
     assert post.Post.title == test_posts[0].title
+    assert res.status_code == 200
 
 
 @pytest.mark.parametrize("title, content, published", [
     ("awesome new title", "awesome new content", True),
-    ("favorite pizza", "i love pepperoni", False),
-    ("tallest skyscrapers", "wahoo", True),
+    ("who is the king", "king123", False),
+    ("fav movie", "saaho", True),
 ])
-def test_create_post(authorized_client, test_user, test_posts, title, content, published):
+def test_create_post(authorized_client, test_user,title,content, published):
     res = authorized_client.post(
         "/posts/create", json={"title": title, "content": content, "published": published})
     created_post = schemas.Post(**res.json())
@@ -60,7 +63,7 @@ def test_create_post_default_published_true(authorized_client, test_user, test_p
     assert res.status_code == 201
     assert created_post.title == "arbitrary title"
     assert created_post.content == "aasdfjasdf"
-    assert created_post.published == True
+    assert created_post.published == True  #default 
     assert created_post.owner_id == test_user['id']
 
 
@@ -85,14 +88,13 @@ def test_delete_post_success(authorized_client, test_user, test_posts):
 
 def test_delete_post_non_exist(authorized_client, test_user, test_posts):
     res = authorized_client.delete(
-        f"/posts/8000000")
-
+        f"/posts/728")
     assert res.status_code == 404
 
 
 def test_delete_other_user_post(authorized_client, test_user, test_posts):
-    res = authorized_client.delete(
-        f"/posts/{test_posts[3].id}")
+    res = authorized_client.delete(                     #here test_user is Id =1 have post 0,1,2
+        f"/posts/{test_posts[3].id}")                   #but here test_posts[3] is related to test_user2
     assert res.status_code == 403
 
 
@@ -134,6 +136,5 @@ def test_update_post_non_exist(authorized_client, test_user, test_posts):
 
     }
     res = authorized_client.put(
-        f"/posts/8000000", json=data)
-
+        f"/posts/1998", json=data)
     assert res.status_code == 404

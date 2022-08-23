@@ -26,7 +26,7 @@ def test_user2(client):
 
 
 @pytest.fixture
-def token(test_user):
+def token(test_user):  #test_user with id one
     return create_access_token({"user_id": test_user['id']})
 
 
@@ -34,9 +34,9 @@ def token(test_user):
 def authorized_client(client, token):
     client.headers = {
         **client.headers,
-        "Authorization": f"Bearer {token}"
+        "Authorization": f"Bearer {token}"  #this is same as we setting bearer token in postman
     }
-    return client
+    return client #authorized client
 
 
 @pytest.fixture
@@ -53,16 +53,21 @@ def test_posts(test_user, session, test_user2):
         {
         "title": "3rd title",
         "content": "3rd content",
-        "owner_id": test_user['id']
+        "owner_id": test_user['id'] #id=1
     }, {
-        "title": "3rd title",
-        "content": "3rd content",
-        "owner_id": test_user2['id']
+        "title": "1st title",
+        "content": "1st content",
+        "owner_id": test_user2['id']  #id =2
     }]
 
     def create_post_model(post):
+    #   post=  {                          first time this function called three time {len(posts_data)}
+    #     "title": "first title",
+    #     "content": "first content",
+    #     "owner_id": test_user['id']
+    # }
         return models.Post(**post)
-    post_map = map(create_post_model, posts_data)
+    post_map = map(create_post_model, posts_data)   #map(function, one list), map iterate all element of list.
     posts = list(post_map)
 
     session.add_all(posts)
