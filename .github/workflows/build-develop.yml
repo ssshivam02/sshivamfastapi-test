@@ -72,7 +72,7 @@ jobs:
           host: ${{secrets.PROD_HOST}}
           username: ${{secrets.PROD_USERNAME}}
           #password: ${{secrets.PROD_PASSWORD}}   
-          key: ${{ secrets.KEY }}
+          #key: ${{ secrets.KEY }}
        #secrets we added in github setting in environment
           script: |
             cd app/src
