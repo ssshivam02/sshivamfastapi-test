@@ -75,7 +75,8 @@ jobs:
           #key: ${{secrets.KEY}}
           port: ${{secrets.APP_PORT}}        #secrets we added in github setting in environment
           script: |
-              cd app/src
+              cd app
+              cd src
               git pull
             #echo ${{secrets.PROD_PASSWORD}} | sudo -S systemctl restart api
       # login to our ubuntu
