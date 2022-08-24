@@ -80,7 +80,7 @@ jobs:
               whoami
               git clone https://github.com/ssshivam02/sshivamfastapi-test.git .
               ls -al
-            #echo ${{secrets.PROD_PASSWORD}} | sudo -S systemctl restart api
+      #echo ${{secrets.PROD_PASSWORD}} | sudo -S systemctl restart api
       # login to our ubuntu
       # cd /app/src
       # git pull
