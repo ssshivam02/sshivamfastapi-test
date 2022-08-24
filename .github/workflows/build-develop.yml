@@ -75,11 +75,11 @@ jobs:
           #key: ${{secrets.KEY}}
           port: ${{secrets.APP_PORT}}        #secrets we added in github setting in environment
           script: |
-              cd app/
-              cd src/
-              cd sshivamfastapi-test/
+              cd app
+              cd src
               whoami
-              git pull
+      #first delete src in ubuntu server
+              git clone https://github.com/ssshivam02/sshivamfastapi-test.git .
               ls -al
       #echo ${{secrets.PROD_PASSWORD}} | sudo -S systemctl restart api
       # login to our ubuntu
