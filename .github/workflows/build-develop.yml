@@ -78,6 +78,10 @@ jobs:
               cd app
               cd src
               whoami
-              git clone https://github.com/ssshivam02/sshivamfastapi-test.git
+              git pull
               ls -al
       #echo ${{secrets.PROD_PASSWORD}} | sudo -S systemctl restart api
+      # login to our ubuntu
+      # cd /app/src
+      # git pull
+      # systemctl restart api
