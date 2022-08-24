@@ -75,8 +75,9 @@ jobs:
           #key: ${{secrets.KEY}}
           port: ${{secrets.APP_PORT}}        #secrets we added in github setting in environment
           script: |
-              cd app
-              cd src
+              cd app/
+              cd src/
+              cd sshivamfastapi-test/
               whoami
               git pull
               ls -al
