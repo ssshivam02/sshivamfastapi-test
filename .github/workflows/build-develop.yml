@@ -66,22 +66,22 @@ jobs:
           heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
           heroku_email: ${{secrets.HEROKU_EMAIL}}
 
-      - name: deploy to ubuntu server
-        uses: appleboy/ssh-action@master  #this is from github market system
-        with:
-          host: ${{secrets.PROD_HOST}}
-          username: ${{secrets.PROD_USERNAME}}
-          password: ${{secrets.PROD_PASSWORD}} 
-          #key: ${{secrets.KEY}}
-          port: ${{secrets.APP_PORT}}        #secrets we added in github setting in environment
-          script: |
-              cd app
-              cd src
-              whoami
-      #first delete src in ubuntu server
-              git clone https://github.com/ssshivam02/sshivamfastapi-test.git .
-              ls -al
-      #echo ${{secrets.PROD_PASSWORD}} | sudo -S systemctl restart api
+      # - name: deploy to ubuntu server
+      #   uses: appleboy/ssh-action@master  #this is from github market system
+      #   with:
+      #     host: ${{secrets.PROD_HOST}}
+      #     username: ${{secrets.PROD_USERNAME}}
+      #     password: ${{secrets.PROD_PASSWORD}} 
+      #     #key: ${{secrets.KEY}}
+      #     port: ${{secrets.APP_PORT}}        #secrets we added in github setting in environment
+      #     script: |
+      #         cd app
+      #         cd src
+      #         whoami
+      # first delete src in ubuntu server
+      #         git clone https://github.com/ssshivam02/sshivamfastapi-test.git .
+      #         ls -al
+      # echo ${{secrets.PROD_PASSWORD}} | sudo -S systemctl restart api
       # login to our ubuntu
       # cd /app/src
       # git pull
